@@ -24,7 +24,7 @@ import org.lwjgl.input.Mouse;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.awt.*;
-import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -161,10 +161,9 @@ public class AEGuiHandler implements IAdvancedGuiHandler<AEBaseGui>, IGhostIngre
         try {
             Class<?> bookmarkItemClass = Class.forName("mezz.jei.bookmarks.BookmarkItem");
             if (bookmarkItemClass.isAssignableFrom(ingredient.getClass())) {
-                Field ingredientField = bookmarkItemClass.getDeclaredField("ingredient");
-                return ingredientField.get(ingredient);
+                return bookmarkItemClass.getMethod("getIngredient").invoke(ingredient);
             }
-        } catch (ClassNotFoundException | NoSuchFieldException | IllegalAccessException e) {
+        } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             AELog.error("Could not normalise bookmark item ingredient: ", e);
         }
         return null;
