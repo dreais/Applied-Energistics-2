@@ -16,3 +16,6 @@ Build: GitHub Actions `.github/workflows/build.yml` uses Java 17, Gradle wrapper
 - Confirm correct fluid P2P bucket attunement, HEI terminal ghost/bookmark transfers, Memory Card pattern copying, circuit recipes and Dual Interface operation.
 - Test item variants with colliding hashes in isolated fixtures before trusting valuable storage.
 - Use the **runtime** AE2-UEL jar in `build/libs`, not `-dev`, `-api` or `-sources`; keep only one AE2 JAR installed.
+
+## GitHub Actions trigger
+This development branch builds on pushes and manual workflow dispatch. If a newly forked repository had Actions disabled when the first commit was pushed, this documentation update triggers a fresh build after enabling Actions. Select the runtime mod JAR from the completed workflow artifact.
